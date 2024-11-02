@@ -1,13 +1,20 @@
-<script setup>
+<script setup lang="jsx">
 import {useModal} from './components/Modal/useModals2'
 import Modal from './components/Modal/Modal.vue'
 import htmlFileContent from './components/Modal/html-file'
 const {showModal} = useModal()
 
+const content = (
+    <div onClick={() => console.log('Событие нажатия в JSX стиле')}>
+        <h1>Some sample title2</h1>
+        <p>Some sample paragraph.</p>
+    </div>
+)
+
 const openModal = () => {
     showModal(Modal, {
         isOpen: true,
-        htmlContent: htmlFileContent,
+        htmlContent: content,
     })
 }
 </script>

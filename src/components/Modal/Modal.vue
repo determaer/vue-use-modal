@@ -14,9 +14,8 @@ console.log(props)
                 aria-labelledby="modalTitle"
                 aria-describedby="modalDescription">
                 <section class="modal-body" id="modalDescription">
-                    <div v-html="htmlContent"></div>
+                    <htmlContent />
                 </section>
-
                 <footer class="modal-footer">
                     <slot name="footer">
                         <button
