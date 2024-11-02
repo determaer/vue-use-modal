@@ -5,6 +5,9 @@ import htmlFileContent from './components/Modal/html-file'
 import CancelButton from './components/CancelButton.vue'
 const {showModal} = useModal()
 
+const selectedFolder = (folderName) => {
+    console.log(folderName, 'folderName')
+}
 const content = (
     <div
         style='text-color: red;'
@@ -14,21 +17,13 @@ const content = (
     </div>
 )
 
-const content2 = <CancelButton />
+const content2 = <CancelButton onSelectedFolder={selectedFolder} />
 
 const openModal = () => {
-    showModal(
-        Modal,
-        {
-            isOpen: true,
-            htmlContent: content2,
-        },
-        {}
-    )
-}
-
-const selectedFolder = (folderName) => {
-    console.log(folderName, 'folderName')
+    showModal(Modal, {
+        isOpen: true,
+        htmlContent: content2,
+    })
 }
 </script>
 
