@@ -1,18 +1,19 @@
 <script setup>
-import {useModal} from './components/Modal/useModal'
+import {useModal} from './components/Modal/useModals2'
 import Modal from './components/Modal/Modal.vue'
-import {markRaw} from 'vue'
-const modal = useModal()
+import htmlFileContent from './components/Modal/html-file'
+const {showModal} = useModal()
 
-const open = () => {
-    modal.component.value = markRaw(Modal)
-    modal.showModal()
+const openModal = () => {
+    showModal(Modal, {
+        isOpen: true,
+        htmlContent: htmlFileContent,
+    })
 }
 </script>
 
 <template>
-    <button type="button" class="btn" @click="() => open()">Open Modal!</button>
-    <Modal v-if="modal.show.value" @close="modal.hideModal" />
+    <button type="button" class="btn" @click="openModal">Open Modal!</button>
 </template>
 
 <style scoped>

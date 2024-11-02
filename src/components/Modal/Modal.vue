@@ -1,4 +1,9 @@
-<script setup></script>
+<script setup>
+const props = defineProps({
+    htmlContent: {},
+})
+console.log(props)
+</script>
 
 <template>
     <transition name="modal-fade">
@@ -8,23 +13,25 @@
                 role="dialog"
                 aria-labelledby="modalTitle"
                 aria-describedby="modalDescription">
-                <header class="modal-header" id="modalTitle">
-                    <slot name="header"> This is the default tile! </slot>
-                </header>
-
                 <section class="modal-body" id="modalDescription">
-                    <slot name="body"> This is the default body! </slot>
+                    <div v-html="htmlContent"></div>
                 </section>
 
                 <footer class="modal-footer">
                     <slot name="footer">
-                        This is the default footer!
                         <button
                             type="button"
                             class="btn-green"
                             @click="$emit('close')"
                             aria-label="Close modal">
                             Close me!
+                        </button>
+                        <button
+                            type="button"
+                            class="btn-green"
+                            @click="$emit('confirm')"
+                            aria-label="Close modal">
+                            confirm
                         </button>
                     </slot>
                 </footer>
@@ -47,7 +54,7 @@
 }
 
 .modal {
-    background: #ffffff;
+    background: green;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
