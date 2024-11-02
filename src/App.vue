@@ -2,20 +2,33 @@
 import {useModal} from './components/Modal/useModals2'
 import Modal from './components/Modal/Modal.vue'
 import htmlFileContent from './components/Modal/html-file'
+import CancelButton from './components/CancelButton.vue'
 const {showModal} = useModal()
 
 const content = (
-    <div onClick={() => console.log('Событие нажатия в JSX стиле')}>
+    <div
+        style='text-color: red;'
+        onClick={() => console.log('Событие нажатия в JSX стиле')}>
         <h1>Some sample title2</h1>
         <p>Some sample paragraph.</p>
     </div>
 )
 
+const content2 = <CancelButton />
+
 const openModal = () => {
-    showModal(Modal, {
-        isOpen: true,
-        htmlContent: content,
-    })
+    showModal(
+        Modal,
+        {
+            isOpen: true,
+            htmlContent: content2,
+        },
+        {}
+    )
+}
+
+const selectedFolder = (folderName) => {
+    console.log(folderName, 'folderName')
 }
 </script>
 
