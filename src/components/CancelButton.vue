@@ -29,6 +29,20 @@
                 </div>
             </template>
         </div>
+        <button
+            type="button"
+            class="btn-green"
+            @click="$emit('close')"
+            aria-label="Close modal">
+            Close me!
+        </button>
+        <button
+            type="button"
+            class="btn-green"
+            @click="handleConfirm('confirm data')"
+            aria-label="Close modal">
+            confirm
+        </button>
     </div>
 </template>
 
@@ -117,6 +131,11 @@ const icons = ref([
 const handleSelectFolder = (folder) => {
     console.log(folder)
     emit('selectedFolder', folder.name)
+}
+
+const handleConfirm = (data) => {
+    emit('confirm', data)
+    emit('close')
 }
 </script>
 

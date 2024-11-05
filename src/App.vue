@@ -1,15 +1,25 @@
 <script setup lang="jsx">
-import {useModal} from './components/Modal/useModals2'
+import {useModal} from './components/Modal/useModal'
 import CancelButton from './components/CancelButton.vue'
+
 const {showModal} = useModal()
 
 const selectedFolder = (folderName) => {
     console.log(folderName, 'folderName')
 }
 
+const confirmedData = (data) => {
+    console.log(data)
+}
+
 const openModal = () => {
     showModal(
-        <CancelButton onSelectedFolder={selectedFolder} defaultFolder={'2'} />
+        //способ обратной связи: передать в компонент реакцию на emit (в JSX стиле - on...)
+        <CancelButton
+            onSelectedFolder={selectedFolder}
+            defaultFolder={'2'}
+            onConfirm={confirmedData}
+        />
     )
 }
 </script>

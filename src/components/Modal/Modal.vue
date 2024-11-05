@@ -2,7 +2,6 @@
 const props = defineProps({
     component: {},
 })
-console.log(props)
 </script>
 
 <template>
@@ -14,7 +13,9 @@ console.log(props)
                 aria-labelledby="modalTitle"
                 aria-describedby="modalDescription">
                 <section class="modal-body" id="modalDescription">
-                    <component />
+                    <component
+                        @close="$emit('close')"
+                        @confirm="$emit('confirm')" />
                 </section>
             </div>
         </div>
