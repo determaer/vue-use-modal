@@ -1,4 +1,5 @@
 import {createApp, defineComponent, h, App} from 'vue'
+import Modal from './Modal.vue'
 
 export function useModal() {
     function showModal<T>(
@@ -25,11 +26,12 @@ export function useModal() {
 
             const ModalWrapper = defineComponent({
                 render() {
-                    return h(component as any, {
+                    return h(Modal as any, {
                         ...props,
                         onClose: closeHandler,
                         onConfirm: confirmHandler,
                         ...events,
+                        component: component,
                     })
                 },
             })

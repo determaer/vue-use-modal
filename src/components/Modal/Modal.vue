@@ -1,6 +1,6 @@
 <script setup>
 const props = defineProps({
-    htmlContent: {},
+    component: {},
 })
 console.log(props)
 </script>
@@ -14,26 +14,8 @@ console.log(props)
                 aria-labelledby="modalTitle"
                 aria-describedby="modalDescription">
                 <section class="modal-body" id="modalDescription">
-                    <htmlContent />
+                    <component />
                 </section>
-                <footer class="modal-footer">
-                    <slot name="footer">
-                        <button
-                            type="button"
-                            class="btn-green"
-                            @click="$emit('close')"
-                            aria-label="Close modal">
-                            Close me!
-                        </button>
-                        <button
-                            type="button"
-                            class="btn-green"
-                            @click="$emit('confirm')"
-                            aria-label="Close modal">
-                            confirm
-                        </button>
-                    </slot>
-                </footer>
             </div>
         </div>
     </transition>
