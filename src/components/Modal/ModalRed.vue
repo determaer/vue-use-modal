@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+const emit = defineEmits([''])
+const handleConfirm = (data) => {
+    emit('confirm', data)
+    emit('close')
+}
+</script>
 
 <template>
     <transition name="modal-fade">
@@ -11,6 +17,20 @@
                 <section class="modal-body" id="modalDescription">
                     <slot name="default" />
                 </section>
+                <button
+                    type="button"
+                    class="btn-green"
+                    @click="$emit('close')"
+                    aria-label="Close modal">
+                    Close me!
+                </button>
+                <button
+                    type="button"
+                    class="btn-green"
+                    @click="handleConfirm('confirm data')"
+                    aria-label="Close modal">
+                    confirm
+                </button>
             </div>
         </div>
     </transition>
@@ -30,7 +50,7 @@
 }
 
 .modal {
-    background: green;
+    background: red;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
