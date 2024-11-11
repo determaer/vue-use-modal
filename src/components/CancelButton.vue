@@ -39,7 +39,7 @@
         <button
             type="button"
             class="btn-green"
-            @click="handleConfirm('confirm data')"
+            @click="handleConfirm(currentFolder)"
             aria-label="Close modal">
             confirm
         </button>
@@ -51,13 +51,13 @@ import {ref} from 'vue'
 
 const emit = defineEmits(['selectedFolder'])
 const props = defineProps({
-    defaultFolder: {
+    folder: {
         type: String,
         default: null,
     },
 })
-
-console.log(props.defaultFolder)
+const currentFolder = ref(props.folder)
+console.log(props.folder)
 const folderSvg = `<svg width="24" height="20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M.81 4.805.75 3.5a3 3 0 0 1 3-3h5.508a3 3 0 0 1 2.12.879l1.243 1.242a3 3 0 0 0 2.12.879h5.974a3 3 0 0 1 2.988 3.271l-.956 10.5A3 3 0 0 1 19.761 20H4.239a3 3 0 0 1-2.987-2.729l-.955-10.5A2.985 2.985 0 0 1 .81 4.806v-.001ZM3.285 5A1.5 1.5 0 0 0 1.79 6.635l.955 10.5A1.5 1.5 0 0 0 4.24 18.5H19.76a1.5 1.5 0 0 0 1.492-1.365l.956-10.5A1.499 1.499 0 0 0 20.715 5H3.285Zm7.035-2.56A1.5 1.5 0 0 0 9.258 2H3.75a1.5 1.5 0 0 0-1.5 1.471l.009.209c.32-.117.666-.18 1.026-.18h8.094l-1.06-1.06Z" fill="#5F5F5F"/></svg>
   
   `
@@ -130,12 +130,11 @@ const icons = ref([
 
 const handleSelectFolder = (folder) => {
     console.log(folder)
-    emit('selectedFolder', folder.name)
+    currentFolder.value = folder
 }
 
 const handleConfirm = (data) => {
-    emit('confirm', data)
-    emit('close')
+    emit('close', data)
 }
 </script>
 

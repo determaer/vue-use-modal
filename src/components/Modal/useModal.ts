@@ -1,28 +1,25 @@
 import {createApp, defineComponent, h, App} from 'vue'
-
-export function useModal<T>({component, slots, props, emits}): Promise<void> {
-    return new Promise(() => {
+import Modal from './Modal.vue'
+export function useModal<T>({component, slots, attrs}): Promise<void> {
+    return new Promise((resolve) => {
         const modalDiv = document.createElement('div')
         document.body.appendChild(modalDiv)
-
-        const closeHandler = () => {
+        const closeHandler = (data: any) => {
             app.unmount()
             document.body.removeChild(modalDiv)
-            console.log('close')
+            console.log('close', data)
+            resolve(data)
         }
 
         const ModalWrapper = defineComponent({
             render() {
                 return h(
-                    component as any,
+                    Modal as any,
                     {
                         onClose: closeHandler,
-                        ...emits,
-                        ...props,
                     },
                     h(slots.default, {
-                        ...emits,
-                        ...props,
+                        ...attrs,
                         onClose: closeHandler,
                     })
                 )

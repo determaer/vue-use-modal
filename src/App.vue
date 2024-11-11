@@ -1,28 +1,18 @@
 <script setup>
-import {defineAsyncComponent} from 'vue'
+import {ref} from 'vue'
 import {useModal} from './components/Modal/useModal'
 import CancelButton from './components/CancelButton.vue'
 
-const selectedFolder = (folderName) => {
-    console.log(folderName, 'folderName')
-}
+const folder = ref('')
 
-const confirmedData = (data) => {
-    console.log(data)
-}
+console.log(CancelButton, import('./components/CancelButton.vue'))
 
 const openModal = () => {
-    //в компонент slots.default должен быть встроен emit close
     useModal({
-        component: defineAsyncComponent(() =>
-            import('./components/Modal/ModalRed.vue')
-        ),
         slots: {default: CancelButton},
-        props: {defaultFolder: '2'},
-        emits: {
-            onSelectedFolder: selectedFolder,
-            onConfirm: confirmedData,
-        },
+        attrs: {folder},
+    }).then((data) => {
+        console.log(data)
     })
 }
 </script>
