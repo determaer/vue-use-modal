@@ -7,9 +7,11 @@ const folder = ref('256')
 
 const openModal = () => {
     useModal({
+        //в slots.default должен быть встроен emit change(key: value)
         slots: {default: CancelButton},
         attrs: {folder},
     }).then((data) => {
+        //при событии submit
         console.log('folder:', data.folder, 'name:', data.name)
     })
 }
