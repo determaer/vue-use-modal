@@ -18,7 +18,7 @@ const data = ref(null)
                 aria-labelledby="modalTitle"
                 aria-describedby="modalDescription">
                 <section class="modal-body" id="modalDescription">
-                    <slot name="default" />
+                    <slot name="default"></slot>
                 </section>
                 <button
                     type="button"

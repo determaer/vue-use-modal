@@ -1,6 +1,13 @@
-import {createApp, defineComponent, h, App, ref} from 'vue'
+import {
+    createApp,
+    defineComponent,
+    h,
+    App,
+    ref,
+    defineAsyncComponent,
+} from 'vue'
 import Modal from './Modal.vue'
-export function useModal<T>({slots, attrs}): Promise<void> {
+export function useModal<T>({component, attrs}): Promise<void> {
     return new Promise((resolve) => {
         const modalDiv = document.createElement('div')
         document.body.appendChild(modalDiv)
@@ -28,10 +35,16 @@ export function useModal<T>({slots, attrs}): Promise<void> {
                         onSubmit: submitHandler,
                         onClose: closeHandler,
                     },
-                    h(slots.default, {
-                        ...attrs,
-                        onChange: changeDataHandler,
-                    })
+                    {
+                        default: () =>
+                            h(
+                                defineAsyncComponent(() => component),
+                                {
+                                    ...attrs,
+                                    onChange: changeDataHandler,
+                                }
+                            ),
+                    }
                 )
             },
         })
