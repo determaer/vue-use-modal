@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import {ref} from 'vue'
+const emit = defineEmits(['close', 'submit'])
+
+const handleConfirm = (data) => {
+    emit('submit', data)
+}
+
+const data = ref(null)
+</script>
 
 <template>
     <transition name="modal-fade">
@@ -11,6 +20,20 @@
                 <section class="modal-body" id="modalDescription">
                     <slot name="default" />
                 </section>
+                <button
+                    type="button"
+                    class="btn-green"
+                    @click="$emit('close')"
+                    aria-label="Close modal">
+                    Close me!
+                </button>
+                <button
+                    type="button"
+                    class="btn-green"
+                    @click="handleConfirm(data)"
+                    aria-label="Close modal">
+                    confirm
+                </button>
             </div>
         </div>
     </transition>
