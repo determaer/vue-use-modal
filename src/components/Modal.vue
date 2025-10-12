@@ -1,115 +1,45 @@
-<script setup>
-import {ref} from 'vue'
-const emit = defineEmits(['close', 'submit'])
+<script setup lang="ts">
 
-const handleConfirm = (data) => {
-    emit('submit', data)
+const emit = defineEmits(['close'])
+
+const closeModalOutside = (evt: MouseEvent) => {
+  if (evt.target instanceof HTMLElement && evt.target.classList.contains('use-modal-wrapper-backdrop')) {
+    emit('close')
+  }
 }
 
-const data = ref(null)
 </script>
 
 <template>
-    <transition name="modal-fade">
-        <div class="modal-backdrop">
-            <div
-                class="modal"
-                role="dialog"
-                aria-labelledby="modalTitle"
-                aria-describedby="modalDescription">
-                <section class="modal-body" id="modalDescription">
-                    <slot name="default"></slot>
-                </section>
-                <button
-                    type="button"
-                    class="btn-green"
-                    @click="$emit('close')"
-                    aria-label="Close modal">
-                    Close me!
-                </button>
-                <button
-                    type="button"
-                    class="btn-green"
-                    @click="handleConfirm(data)"
-                    aria-label="Close modal">
-                    confirm
-                </button>
-            </div>
-        </div>
-    </transition>
+  <div 
+    class="use-modal-wrapper-backdrop"
+    @click="closeModalOutside"
+  >
+    <div class="use-modal-wrapper-frame">
+      <slot name="default" />
+    </div>
+  </div>
 </template>
 
 <style>
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.use-modal-wrapper-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+  z-index: 1000;
 }
 
-.modal {
-    background: green;
-    box-shadow: 2px 2px 20px 1px;
-    overflow-x: auto;
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-header,
-.modal-footer {
-    padding: 15px;
-    display: flex;
-}
-
-.modal-header {
-    position: relative;
-    border-bottom: 1px solid #eeeeee;
-    color: #4aae9b;
-    justify-content: space-between;
-}
-
-.modal-footer {
-    border-top: 1px solid #eeeeee;
-    flex-direction: column;
-}
-
-.modal-body {
-    position: relative;
-    padding: 20px 10px;
-}
-
-.btn-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    font-size: 20px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    color: #4aae9b;
-    background: transparent;
-}
-
-.btn-green {
-    color: white;
-    background: #4aae9b;
-    border: 1px solid #4aae9b;
-    border-radius: 2px;
-}
-
-.modal-fade-enter,
-.modal-fade-leave-to {
-    opacity: 0;
-}
-
-.modal-fade-enter-active,
-.modal-fade-leave-active {
-    transition: opacity 0.5s ease;
+.use-modal-wrapper-frame {
+  background: #fff;
+  box-shadow: 2px 2px 10px 1px;
+  max-width: 300px;
+  max-height: 300px;
+  overflow-x: auto;
 }
 </style>
