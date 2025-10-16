@@ -1,8 +1,46 @@
 {
-  "name": "vue-modal",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@determaer/vue-use-modal",
+  "private": false,
+  "version": "0.0.3",
   "type": "module",
+  "author": {
+    "name": "Georgii Smirnov",
+    "nickname": "determaer",
+    "url": "https://github.com/determaer"
+  },
+  "main": "./dist/vue3-use-modal.umd.js",
+  "module": "./dist/vue3-use-modal.es.js",
+  "types": "./dist/index.d.ts",
+  "styles": "./dist/style.css",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue3-use-modal.umd.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/vue3-use-modal.umd.js"
+      }
+    }
+  },
+  "peerDependencies": {
+    "vue": "^3.5.22"
+  },
+  "keywords": [
+    "vue3-use-modal",
+    "use-modal",
+    "vue3",
+    "modal"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/determaer/vue-use-modal"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
@@ -17,6 +55,8 @@
     "@vue/tsconfig": "^0.8.1",
     "typescript": "~5.9.3",
     "vite": "^7.1.7",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.5.4",
     "vue-tsc": "^3.1.0"
   }
 }
