@@ -1,6 +1,7 @@
 <template>
   <div style="padding: 10px;">
     <span>Содержимое модального окна</span>
+    <p>{{ info }}</p>
     <div style="display: flex;">
       <span style="width: 50%;">Вывод id</span>
       <input
@@ -28,6 +29,13 @@
 
 <script setup lang="ts">
 import { reactive } from 'vue';
+
+const props = defineProps({
+  info: {
+    type: Number,
+    required: true,
+  }
+})
 
 const checkboxesState = reactive({
   'ID': false,
