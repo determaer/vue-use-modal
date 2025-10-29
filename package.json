@@ -1,7 +1,7 @@
 {
   "name": "@determaer/vue-use-modal",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "author": {
     "name": "Georgii Smirnov",
@@ -28,7 +28,7 @@
     }
   },
   "peerDependencies": {
-    "vue": "^3.5.22"
+    "vue": "^3.x"
   },
   "keywords": [
     "vue3-use-modal",
@@ -47,7 +47,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.5.22"
+    "vue": "^3.0"
   },
   "devDependencies": {
     "@types/node": "^24.6.0",
