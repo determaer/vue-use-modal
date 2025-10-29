@@ -21,7 +21,7 @@ export function useModal<
   attrs?: AttrsT;
   Modal: Component;
   modalAttrs?: ModalAttrsT;
-}): Promise<ReturnT | true> {
+}): Promise<ReturnT | boolean> {
   return new Promise((resolve) => {
     const modalDiv = document.createElement("div");
     document.body.appendChild(modalDiv);
@@ -30,15 +30,15 @@ export function useModal<
     const closeHandler = () => {
       app.unmount();
       document.body.removeChild(modalDiv);
+      resolve(false);
     };
 
     const submitHandler = () => {
-      closeHandler();
       if (Object.keys(Data.value).length > 0) {
         resolve(Data.value);
-      } else {
-        resolve(true);
       }
+      resolve(true);
+      closeHandler();
     };
 
     const changeDataHandler = (data: ReturnT) => {

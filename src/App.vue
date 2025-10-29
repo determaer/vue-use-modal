@@ -1,32 +1,27 @@
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
-import { useModalShowExample } from "./modal-example-1/useModalShowExample";
-import { type Return, typeOfReturn } from "./modal-example-1/modalTypes";
-
-const modalResponse = ref<Return>();
-
-const handleClick = async () => {
-  console.log(typeof modalResponse.value);
-  const data = await useModalShowExample();
-  if (typeOfReturn(data)) {
-    modalResponse.value = data;
-  }
-};
-
-watchEffect(() => {
-  console.log(typeof modalResponse.value);
-});
+import FirstExample from "./modal-example-1/FirstExample.vue";
+import SecondExample from "./modal-example-2/SecondExample.vue";
 </script>
 
 <template>
-  <div>Текст</div>
-  <button @click="handleClick">Открыть модальное окно</button>
-
-  <div>
-    <p>Результат работы модального окна:</p>
-    <p>{{ modalResponse }}</p>
+  <div class="container">
+    <FirstExample class="item" />
+    <SecondExample class="item" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.item {
+  width: 250px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px;
+}
+</style>
 
