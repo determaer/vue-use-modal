@@ -1,20 +1,18 @@
 <script setup lang="ts">
-
-const emit = defineEmits(['close'])
+const emit = defineEmits(["close"]);
 
 const closeModalOutside = (evt: MouseEvent) => {
-  if (evt.target instanceof HTMLElement && evt.target.classList.contains('use-modal-wrapper-backdrop')) {
-    emit('close')
+  if (
+    evt.target instanceof HTMLElement &&
+    evt.target.classList.contains("use-modal-wrapper-backdrop")
+  ) {
+    emit("close");
   }
-}
-
+};
 </script>
 
 <template>
-  <div 
-    class="use-modal-wrapper-backdrop"
-    @click="closeModalOutside"
-  >
+  <div class="use-modal-wrapper-backdrop" @click="closeModalOutside">
     <div class="use-modal-wrapper-frame">
       <slot name="default" />
     </div>
@@ -30,7 +28,7 @@ const closeModalOutside = (evt: MouseEvent) => {
   right: 0;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: center;  
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 }

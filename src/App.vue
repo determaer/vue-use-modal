@@ -24,4 +24,3 @@ import SecondExample from "./modal-example-2/SecondExample.vue";
   padding: 10px;
 }
 </style>
-

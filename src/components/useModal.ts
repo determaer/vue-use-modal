@@ -2,9 +2,9 @@ import { createApp, defineComponent, h, ref, defineAsyncComponent } from "vue";
 import type { Component } from "vue";
 
 export function useModal<
-  ReturnT extends object = {},
-  AttrsT extends object = {},
-  ModalAttrsT extends object = {}
+  ReturnT extends object = Record<string, unknown>,
+  AttrsT extends object = Record<string, unknown>,
+  ModalAttrsT extends object = Record<string, unknown>,
 >({
   component,
   loadingComponent,
@@ -70,9 +70,9 @@ export function useModal<
                   onChange: changeDataHandler,
                   onSubmit: submitHandler,
                   onClose: closeHandler,
-                }
+                },
               ),
-          }
+          },
         );
       },
     });
@@ -81,3 +81,4 @@ export function useModal<
     app.mount(modalDiv);
   });
 }
+

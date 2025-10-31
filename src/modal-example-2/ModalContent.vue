@@ -11,5 +11,5 @@
 </template>
 
 <script setup lang="ts">
-const emit = defineEmits(["submit", "close"]);
+defineEmits(["submit", "close"]);
 </script>
